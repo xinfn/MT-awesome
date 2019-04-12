@@ -7,7 +7,7 @@ A minimize CICD project powered by AWS.
 ```
                                                      +------------+
                                                      |            |
-  +--------+       WebHook             +-------------+--+         | 3. build program
+  +--------+       WebHook             +-------------+--+         | 3. build and unit test
   | GitHub +-------------------------->|     Jenkins    |         | 4. build docker image
   +--------+     1.push event          +--+-+---+-------+         | 5. push docker image
       ^                                   | |   |    ^            |
