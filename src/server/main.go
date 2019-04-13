@@ -11,5 +11,5 @@ func main() {
 	r.GET("/account", api.GetAccount)
 
 	// run HTTP server
-	r.Run("127.0.0.1:8080")
+	r.Run("0.0.0.0:8080")
 }
