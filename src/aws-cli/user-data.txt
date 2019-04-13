@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker pull ringleai/mt-cicd
+docker run -p 8080:8080 ringleai/mt-cicd /opt/MT-awesome/mt-server > /home/ec2-user/mt-server.log 2>&1 &
