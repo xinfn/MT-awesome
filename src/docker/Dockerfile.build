@@ -1,5 +1,0 @@
-FROM golang:1.11
-
-RUN mkdir -p /opt/MT-awesome
-ADD src/server/bin/mt-server /opt/MT-awesome
-RUN chmod +x /opt/MT-awesome/mt-server
