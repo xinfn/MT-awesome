@@ -54,8 +54,9 @@ node {
                     sh """cd $GOPATH/src/server && ./build.sh"""
                 }
                 
-                stage('AWS Publish') {
+                stage('AWS Deploy') {
                     // Do something with aws sdk
+                    sh """cd $GOPATH/src/aws-cli && ./create-ec2.sh"""
                 }
             }
         }
@@ -66,7 +67,6 @@ node {
     } finally {
         // Success or failure, always send notifications
         // TODO: notify the build result
-        
         def bs = currentBuild.result ?: 'SUCCESSFUL'
         if (bs == 'SUCCESSFUL') {
             // TODO: notify the build result
