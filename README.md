@@ -35,4 +35,3 @@ A minimize CICD project powered by AWS.
 - AWS RDS
 
 
-
