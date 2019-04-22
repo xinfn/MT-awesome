@@ -1,4 +1,4 @@
-variable "region" {
+variable "aws_region" {
   default = "cn-northwest-1"
 }
 
@@ -58,4 +58,3 @@ variable "ecs_instance_role_arn" {
 variable "api_gateway_name" {
   default = "MT-CICD1"
 }
-

@@ -50,3 +50,12 @@
 
 ```
 
+## Usage
+
+```
+# Init terraform
+
+```
+$ ENV=dev # dev test prod qa
+$ terraform init -backend-config="key=infrastructure/$ENV/mt-cicd.tfstate"
+```
