@@ -52,8 +52,7 @@
 
 ## Usage
 
-```
-# Init terraform
+### Init terraform
 
 ```
 $ ENV=dev # dev test prod qa

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-docker run -it -d -p 8080:8080 ringleai/mt-cicd:v1
-
-# shutdown EC2
-echo "sudo poweroff" | at now +60 minutes
