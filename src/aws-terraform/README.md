@@ -11,7 +11,7 @@
 - EC2
 - Container
 
-## Serice Architecture
+## Service Architecture
 
 ```
 

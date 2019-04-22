@@ -5,6 +5,12 @@ import "net/http"
 import "server/service"
 import "github.com/gin-gonic/gin"
 
+// Return 200 Code for aws's alb health check
+func SeviceHealthCheck(c *gin.Context) {
+	c.String(http.StatusOK, "")
+	return
+}
+
 // Create an account with the given name and password
 func CreateAccount(c *gin.Context) {
 	name := c.Query("name")

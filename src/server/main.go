@@ -6,6 +6,7 @@ import "github.com/gin-gonic/gin"
 func initRoute(group *gin.RouterGroup) {
 	group.POST("/account", api.CreateAccount)
 	group.GET("/account", api.GetAccount)
+	group.GET("/healthcheck", api.SeviceHealthCheck)
 }
 
 func main() {
