@@ -10,7 +10,7 @@ node {
             
                 stage('Checkout') {
                     echo 'Checking out SCM'
-                    sh """mkdir $GOPATH/log"""
+                    sh """echo "=======Checkout========" >> $GOPATH/log"""
                     checkout scm
                 }
                 
@@ -28,6 +28,7 @@ node {
                 }
         
                 stage('Test') {
+                    sh """echo "=======Test========" >> $GOPATH/log"""
                     
                     // List all our project files with 'go list ./... | grep -v /vendor/ | grep -v github.com | grep -v golang.org'
                     // Push our project files relative to ./src
@@ -49,6 +50,7 @@ node {
                 }
             
                 stage('Build') {
+                    sh """echo "=======Build========" >> $GOPATH/log"""
                     echo 'Building Executable'
                 
                     // Produced binary is $GOPATH/src/cmd/project/project
@@ -56,9 +58,10 @@ node {
                 }
                 
                 stage('AWS Deploy') {
+                    sh """echo "=======AWS Deploy========" >> $GOPATH/log"""
                     // Do something with aws sdk
                     //sh """cd $GOPATH/src/aws-cli && ./create-ec2.sh"""
-                    sh """cd $GOPATH/docker && ./build-image.sh >> $GOPATH/log/test.log 2>&1"""
+                    sh """cd $GOPATH/docker && ./build-image.sh >> $GOPATH/log 2>&1"""
                     sh """cd $GOPATH/terraform && ./init_and_apply.sh ${BUILD_ID}"""
                 }
             }
