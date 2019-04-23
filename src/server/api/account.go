@@ -33,6 +33,7 @@ func CreateAccount(c *gin.Context) {
 
 // Return account detial information
 func GetAccount(c *gin.Context) {
-	c.JSON(http.StatusNotImplemented, gin.H{"error": "method not implemented"})
+	//c.JSON(http.StatusNotImplemented, gin.H{"error": "method not implemented"})
+	c.JSON(http.StatusOK, gin.H{"account": "MT"})
 	return
 }
