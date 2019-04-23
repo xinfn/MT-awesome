@@ -10,7 +10,7 @@ node {
             
                 stage('Checkout') {
                     echo 'Checking out SCM'
-                    sh """touch $GOPATH/log"""
+                    sh """mkdir $GOPATH/log"""
                     checkout scm
                 }
                 
@@ -58,9 +58,8 @@ node {
                 stage('AWS Deploy') {
                     // Do something with aws sdk
                     //sh """cd $GOPATH/src/aws-cli && ./create-ec2.sh"""
-                    sh """cd $GOPATH/docker && ./build-image.sh >> $GOPATH/log 2>&1"""
-                    sh """echo "Begin to terraform..." >> $GOPATH/log """
-                    sh """cd $GOPATH/terraform && echo "Into terraform dir" >> $GOPATH/log 2>&1 && ENV=dev && terraform init -backend-config="key=infrastructure/$ENV/mt-cicd.tfstate" -plugin-dir=/home/ubuntu/.terraform.d/plugin-cache/linux_amd64/  >> $GOPATH/log 2>&1 && terraform apply -auto-approve -var 'api_gataway_stage_name=${BUILD_ID}' >> $GOPATH/log 2>&1 """
+                    sh """cd $GOPATH/docker && ./build-image.sh >> $GOPATH/log/test.log 2>&1"""
+                    sh """cd $GOPATH/terraform && ./init_and_apply.sh ${BUILD_ID}"""
                 }
             }
         }
