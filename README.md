@@ -5,24 +5,32 @@ A minimize CICD project powered by AWS.
 ## Workflow
 
 ```
-                                                     +------------+
-                                                     |            |
-  +--------+       WebHook             +-------------+--+         | 3. build and unit test
-  | GitHub +-------------------------->|     Jenkins    |         | 4. build docker image
-  +--------+     1.push event          +--+-+---+-------+         | 5. push docker image
-      ^                                   | |   |    ^            |
-      |                                   | |   |    |            |
-      +-----------------------------------+ |   |    +------------+
-                 2. pull code               |   |
-                                            |AWS|
-                                            |CLI|
-                             6. start EC2   |   | 8. test
-                             7. pull docker |   | 9. destroy EC2
-                                image       |   |
-                                            v   v
-  +----------+                         +----------------+
-  |    DB    |<----------------------->|     server     |
-  +----------+                         +----------------+
+                                                             +------------+
+                                                             |            |
+          +--------+       WebHook             +-------------+--+         | 3. build and unit test
+          | GitHub +-------------------------->|     Jenkins    |         | 4. build docker image
+          +--------+     1.push event          +--+-+----+------+         | 5. push docker image
+              ^                                   | |    |   ^            |
+              |                                   | |    |   |            |
+              +-----------------------------------+ |    |   +------------+
+                         2. pull code               |    |
+                                                    |    |
+                                                    |    |
+                                                    |    |
+                                6. create resource  |    | 7. test
+                                   with terraform   |    |
+                                                    |    |
+                                8. destroy resource |    |
+                                                    v    |
+          +----------------------------------------------|----------------+
+          |                            +-----------------|---------------+|
+          |                            | ECS Cluster     v               ||
+          |    +-----------+           |          +-------------+        ||
+          |    |     DB    |<---------------------+   Docker    |        ||
+          |    +-----------+           |          +-------------+        ||
+          |                            |                                 ||
+          |                            +---------------------------------+|
+          +---------------------------------------------------------------+
 ```
 
 ## Technology stack
@@ -31,7 +39,8 @@ A minimize CICD project powered by AWS.
 - Gin
 - Docker
 - Jenkins
-- AWS EC2
+- Terraform
+- AWS ECS
 - AWS RDS
 
 
