@@ -44,5 +44,5 @@ resource "aws_api_gateway_deployment" "mt_cicd_gateway_deployment" {
   depends_on = ["aws_api_gateway_integration.mt_cicd_gateway_integration"]
 
   rest_api_id = "${aws_api_gateway_rest_api.api_gateway.id}"
-  stage_name  = "test2"
+  stage_name  = "${var.api_gateway_stage_name}"
 }

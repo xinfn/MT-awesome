@@ -56,7 +56,9 @@ node {
                 
                 stage('AWS Deploy') {
                     // Do something with aws sdk
-                    sh """cd $GOPATH/src/aws-cli && ./create-ec2.sh"""
+                    //sh """cd $GOPATH/src/aws-cli && ./create-ec2.sh"""
+                    sh """cd $GOPATH/docker && ./build-image.sh """
+                    sh """cd $GOPATH/terraform && ENV=dev && terraform init -backend-config="key=infrastructure/$ENV/mt-cicd.tfstate -plugin-dir /home/ubuntu/.terraform.d/plugin-cache/linux_amd64/ -var 'api_gataway_stage_name=${BUILD_ID}'""""
                 }
             }
         }

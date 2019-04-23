@@ -58,3 +58,7 @@ variable "ecs_instance_role_arn" {
 variable "api_gateway_name" {
   default = "MT-CICD1"
 }
+
+variable "api_gateway_stage_name" {
+  default = "test"
+}
