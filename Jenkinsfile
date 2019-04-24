@@ -54,14 +54,19 @@ node {
                     echo 'Building Executable'
                 
                     // Produced binary is $GOPATH/src/cmd/project/project
-                    sh """cd $GOPATH/src/server && ./build.sh"""
+                    //sh """cd $GOPATH/src/server && ./build.sh"""
+                    sh """
+                        cd $GOPATH/docker
+                        ./build-image-buildapp.sh >> $GOPATH/log 2>&1
+                        ./run-container-buildapp.sh >> $GOPATH/log 2>&1
+                        ./build-image.sh >> $GOPATH/log 2>&1
+                    """
                 }
                 
                 stage('AWS Deploy') {
                     sh """echo "=======AWS Deploy========" >> $GOPATH/log"""
                     // Do something with aws sdk
                     //sh """cd $GOPATH/src/aws-cli && ./create-ec2.sh"""
-                    sh """cd $GOPATH/docker && ./build-image.sh >> $GOPATH/log 2>&1"""
                     sh """cd $GOPATH/terraform && ./init_and_apply.sh ${BUILD_ID}"""
                 }
             }

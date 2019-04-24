@@ -1,0 +1,5 @@
+FROM ringleai/mt-cicd-base:v1
+
+WORKDIR ./src/server
+
+CMD ./build.sh
